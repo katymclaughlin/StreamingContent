@@ -34,21 +34,23 @@ namespace StreamingContent_Repository
         return null;
        }
        //update
-       public bool UpdateShow(string originalTitle, Show newContent)
+       public bool UpdateShow(int showId, int fieldId, string updatedValue)
        {
-        Show oldContent = GetContent(originalTitle);
-        if (oldContent != null)
-        {
-            oldContent.Episodes = newContent.Episodes;
-            oldContent.AverageRunTime = newContent.AverageRunTime;
+        Show oldContent = _contentDirectory[showId];
+            if (fieldId == 1)
+            {
+                oldContent.Title = updatedValue;
+            }
+            else if (fieldId == 2)
+            {
+                oldContent.AverageRunTime = Convert.ToDouble(updatedValue);
+            }
+        
+            _contentDirectory[showId] = oldContent;
 
             return true;
-        }
-        else
-        {
-            return false;
-        }
        }
+       
        //delete
        public bool DeleteShow(Show existingContent)
        {

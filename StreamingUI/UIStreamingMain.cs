@@ -53,18 +53,19 @@ namespace Streaming_UI
             int updateMovieUserInput = Convert.ToInt32(Console.ReadLine());
             if (updateMovieUserInput == 1)
             {
-                Console.WriteLine ("Updating the Title");
+                Console.WriteLine ("Please provide the new movie Title");
             }
             else if (updateMovieUserInput == 2)
             {
-                Console.WriteLine ("Updating the Movie Director");
+                Console.WriteLine ("Please provide the new movie Director");
             }
             else if (updateMovieUserInput == 3)
             {
-                Console.WriteLine ("Updating the RunTime");
+                Console.WriteLine ("Pleae provide the movie's new RunTime");
             }
             else 
             {
+                Console.WriteLine ("That is not a valid option, returning to the main menu");
                 return;
             }
             string UserUpdateChoice = Console.ReadLine();
@@ -107,6 +108,35 @@ namespace Streaming_UI
             NewShow.Title = addShowInput;
             NewShow.AverageRunTime = addShowRunTime;
             bool AddShow = showList.AddShow(NewShow);
+        }
+
+        public void UpdateShows()
+        {
+            Console.WriteLine("Please type the number next to the show you would like to update.");
+            List<Show> ShowList = showList.GetContents();
+            for (int i = 0; i < ShowList.Count; i++ )
+            {
+            Console.WriteLine(i + " " + ShowList[i].Title);  
+            }
+            int updateUserInput = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Type 1 to udpate the Show Title");
+            Console.WriteLine("Type 2 to update the Show's Average RunTime");
+            int updateShowUserInput = Convert.ToInt32(Console.ReadLine());
+            if (updateShowUserInput == 1)
+            {
+                Console.WriteLine ("Please provide the new Title");
+            }
+            else if (updateShowUserInput == 2)
+            {
+                Console.WriteLine ("Please provide the new Average RunTime");
+            }
+            else 
+            {
+                Console.WriteLine ("That is not a valid option, returning to the main menu");
+                return;
+            }
+            string UserUpdateChoice2 = Console.ReadLine();
+            bool UpdateShow = showList.UpdateShow(updateUserInput, updateShowUserInput, UserUpdateChoice2);
         }
         public void DeleteShows()
         {
@@ -198,6 +228,9 @@ namespace Streaming_UI
                 case "f":
                     uih.ListofShows();
                     break; 
+                case "g":
+                    uih.UpdateShows();
+                    break;
                 case "h":
                     uih.DeleteShows();
                     break;        
